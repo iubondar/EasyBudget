@@ -1,21 +1,6 @@
-//
-//  ContentView.swift
-//  EasyBudget
-//
-//  Created by Бондарь Иван on 18.01.2023.
-//
-
 import SwiftUI
-import CoreData
 
-struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
-
+struct CurrentPeriodView: View {
     var body: some View {
         NavigationView {
             List {
@@ -42,6 +27,14 @@ struct ContentView: View {
         }
     }
 
+    // TODO: перенести во ViewModel
+    @Environment(\.managedObjectContext) private var viewContext
+
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        animation: .default)
+    private var items: FetchedResults<Item>
+    
     private func addItem() {
         withAnimation {
             let newItem = Item(context: viewContext)
@@ -58,6 +51,7 @@ struct ContentView: View {
         }
     }
 
+    // TODO: перенести во ViewModel
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { items[$0] }.forEach(viewContext.delete)
@@ -74,6 +68,7 @@ struct ContentView: View {
     }
 }
 
+// TODO: перенести во ViewModel
 private let itemFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .short
@@ -81,8 +76,8 @@ private let itemFormatter: DateFormatter = {
     return formatter
 }()
 
-struct ContentView_Previews: PreviewProvider {
+struct CurrentPeriodView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        CurrentPeriodView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

@@ -7,11 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F093F8D129787373004EDCB9 /* EasyBudgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F093F8D029787373004EDCB9 /* EasyBudgetApp.swift */; };
-		F093F8D329787373004EDCB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F093F8D229787373004EDCB9 /* ContentView.swift */; };
+		F00283B22979A7C70052B8F9 /* EasyBudgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283AE2979A7C70052B8F9 /* EasyBudgetApp.swift */; };
+		F00283B32979A7C70052B8F9 /* EasyBudgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283AE2979A7C70052B8F9 /* EasyBudgetApp.swift */; };
+		F00283B42979A7C70052B8F9 /* EasyBudgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283AE2979A7C70052B8F9 /* EasyBudgetApp.swift */; };
+		F00283B52979A7C70052B8F9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283AF2979A7C70052B8F9 /* ContentView.swift */; };
+		F00283B62979A7C70052B8F9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283AF2979A7C70052B8F9 /* ContentView.swift */; };
+		F00283B72979A7C70052B8F9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283AF2979A7C70052B8F9 /* ContentView.swift */; };
+		F00283B82979A7C70052B8F9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283B12979A7C70052B8F9 /* Persistence.swift */; };
+		F00283B92979A7C70052B8F9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283B12979A7C70052B8F9 /* Persistence.swift */; };
+		F00283BA2979A7C70052B8F9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283B12979A7C70052B8F9 /* Persistence.swift */; };
+		F00283BC2979AA210052B8F9 /* CurrentPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283BB2979AA210052B8F9 /* CurrentPeriodView.swift */; };
+		F00283BD2979AA210052B8F9 /* CurrentPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283BB2979AA210052B8F9 /* CurrentPeriodView.swift */; };
+		F00283BE2979AA210052B8F9 /* CurrentPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283BB2979AA210052B8F9 /* CurrentPeriodView.swift */; };
 		F093F8D529787374004EDCB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F093F8D429787374004EDCB9 /* Assets.xcassets */; };
 		F093F8D829787374004EDCB9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F093F8D729787374004EDCB9 /* Preview Assets.xcassets */; };
-		F093F8DA29787374004EDCB9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F093F8D929787374004EDCB9 /* Persistence.swift */; };
 		F093F8DD29787374004EDCB9 /* EasyBudget.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F093F8DB29787374004EDCB9 /* EasyBudget.xcdatamodeld */; };
 		F093F8E729787374004EDCB9 /* EasyBudgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F093F8E629787374004EDCB9 /* EasyBudgetTests.swift */; };
 		F093F8F129787374004EDCB9 /* EasyBudgetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F093F8F029787374004EDCB9 /* EasyBudgetUITests.swift */; };
@@ -36,12 +45,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F00283AE2979A7C70052B8F9 /* EasyBudgetApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasyBudgetApp.swift; sourceTree = "<group>"; };
+		F00283AF2979A7C70052B8F9 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F00283B12979A7C70052B8F9 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		F00283BB2979AA210052B8F9 /* CurrentPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CurrentPeriodView.swift; path = CurrentPeriod/CurrentPeriodView.swift; sourceTree = "<group>"; };
 		F093F8CD29787373004EDCB9 /* EasyBudget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyBudget.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F093F8D029787373004EDCB9 /* EasyBudgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyBudgetApp.swift; sourceTree = "<group>"; };
-		F093F8D229787373004EDCB9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F093F8D429787374004EDCB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F093F8D729787374004EDCB9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		F093F8D929787374004EDCB9 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		F093F8DC29787374004EDCB9 /* EasyBudget.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EasyBudget.xcdatamodel; sourceTree = "<group>"; };
 		F093F8E229787374004EDCB9 /* EasyBudgetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyBudgetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F093F8E629787374004EDCB9 /* EasyBudgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyBudgetTests.swift; sourceTree = "<group>"; };
@@ -75,6 +85,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F00283AC2979A7C70052B8F9 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				F00283AD2979A7C70052B8F9 /* App */,
+				F00283B02979A7C70052B8F9 /* Persistance */,
+				F00283BB2979AA210052B8F9 /* CurrentPeriodView.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		F00283AD2979A7C70052B8F9 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				F00283AE2979A7C70052B8F9 /* EasyBudgetApp.swift */,
+				F00283AF2979A7C70052B8F9 /* ContentView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		F00283B02979A7C70052B8F9 /* Persistance */ = {
+			isa = PBXGroup;
+			children = (
+				F00283B12979A7C70052B8F9 /* Persistence.swift */,
+			);
+			path = Persistance;
+			sourceTree = "<group>";
+		};
 		F093F8C429787373004EDCB9 = {
 			isa = PBXGroup;
 			children = (
@@ -98,10 +135,8 @@
 		F093F8CF29787373004EDCB9 /* EasyBudget */ = {
 			isa = PBXGroup;
 			children = (
-				F093F8D029787373004EDCB9 /* EasyBudgetApp.swift */,
-				F093F8D229787373004EDCB9 /* ContentView.swift */,
+				F00283AC2979A7C70052B8F9 /* Source */,
 				F093F8D429787374004EDCB9 /* Assets.xcassets */,
-				F093F8D929787374004EDCB9 /* Persistence.swift */,
 				F093F8DB29787374004EDCB9 /* EasyBudget.xcdatamodeld */,
 				F093F8D629787374004EDCB9 /* Preview Content */,
 			);
@@ -263,10 +298,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F00283B22979A7C70052B8F9 /* EasyBudgetApp.swift in Sources */,
+				F00283BC2979AA210052B8F9 /* CurrentPeriodView.swift in Sources */,
+				F00283B82979A7C70052B8F9 /* Persistence.swift in Sources */,
 				F093F8DD29787374004EDCB9 /* EasyBudget.xcdatamodeld in Sources */,
-				F093F8DA29787374004EDCB9 /* Persistence.swift in Sources */,
-				F093F8D329787373004EDCB9 /* ContentView.swift in Sources */,
-				F093F8D129787373004EDCB9 /* EasyBudgetApp.swift in Sources */,
+				F00283B52979A7C70052B8F9 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,7 +310,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F00283B32979A7C70052B8F9 /* EasyBudgetApp.swift in Sources */,
+				F00283BD2979AA210052B8F9 /* CurrentPeriodView.swift in Sources */,
+				F00283B92979A7C70052B8F9 /* Persistence.swift in Sources */,
 				F093F8E729787374004EDCB9 /* EasyBudgetTests.swift in Sources */,
+				F00283B62979A7C70052B8F9 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +324,10 @@
 			files = (
 				F093F8F129787374004EDCB9 /* EasyBudgetUITests.swift in Sources */,
 				F093F8F329787374004EDCB9 /* EasyBudgetUITestsLaunchTests.swift in Sources */,
+				F00283B72979A7C70052B8F9 /* ContentView.swift in Sources */,
+				F00283B42979A7C70052B8F9 /* EasyBudgetApp.swift in Sources */,
+				F00283BA2979A7C70052B8F9 /* Persistence.swift in Sources */,
+				F00283BE2979AA210052B8F9 /* CurrentPeriodView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
