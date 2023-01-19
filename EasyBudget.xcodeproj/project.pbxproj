@@ -16,9 +16,12 @@
 		F00283B82979A7C70052B8F9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283B12979A7C70052B8F9 /* Persistence.swift */; };
 		F00283B92979A7C70052B8F9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283B12979A7C70052B8F9 /* Persistence.swift */; };
 		F00283BA2979A7C70052B8F9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283B12979A7C70052B8F9 /* Persistence.swift */; };
-		F00283BC2979AA210052B8F9 /* CurrentPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283BB2979AA210052B8F9 /* CurrentPeriodView.swift */; };
-		F00283BD2979AA210052B8F9 /* CurrentPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283BB2979AA210052B8F9 /* CurrentPeriodView.swift */; };
-		F00283BE2979AA210052B8F9 /* CurrentPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283BB2979AA210052B8F9 /* CurrentPeriodView.swift */; };
+		F00283C12979AC920052B8F9 /* CurrentPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283C02979AC920052B8F9 /* CurrentPeriodView.swift */; };
+		F00283C22979AC920052B8F9 /* CurrentPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283C02979AC920052B8F9 /* CurrentPeriodView.swift */; };
+		F00283C32979AC920052B8F9 /* CurrentPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283C02979AC920052B8F9 /* CurrentPeriodView.swift */; };
+		F00283CA2979AD160052B8F9 /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283C92979AD160052B8F9 /* EditItemView.swift */; };
+		F00283CB2979AD160052B8F9 /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283C92979AD160052B8F9 /* EditItemView.swift */; };
+		F00283CC2979AD160052B8F9 /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283C92979AD160052B8F9 /* EditItemView.swift */; };
 		F093F8D529787374004EDCB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F093F8D429787374004EDCB9 /* Assets.xcassets */; };
 		F093F8D829787374004EDCB9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F093F8D729787374004EDCB9 /* Preview Assets.xcassets */; };
 		F093F8DD29787374004EDCB9 /* EasyBudget.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F093F8DB29787374004EDCB9 /* EasyBudget.xcdatamodeld */; };
@@ -48,7 +51,8 @@
 		F00283AE2979A7C70052B8F9 /* EasyBudgetApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasyBudgetApp.swift; sourceTree = "<group>"; };
 		F00283AF2979A7C70052B8F9 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F00283B12979A7C70052B8F9 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		F00283BB2979AA210052B8F9 /* CurrentPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CurrentPeriodView.swift; path = CurrentPeriod/CurrentPeriodView.swift; sourceTree = "<group>"; };
+		F00283C02979AC920052B8F9 /* CurrentPeriodView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentPeriodView.swift; sourceTree = "<group>"; };
+		F00283C92979AD160052B8F9 /* EditItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemView.swift; sourceTree = "<group>"; };
 		F093F8CD29787373004EDCB9 /* EasyBudget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyBudget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F093F8D429787374004EDCB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F093F8D729787374004EDCB9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -89,8 +93,9 @@
 			isa = PBXGroup;
 			children = (
 				F00283AD2979A7C70052B8F9 /* App */,
+				F00283BF2979AC920052B8F9 /* CurrentPeriod */,
+				F00283C82979ACFB0052B8F9 /* EditItem */,
 				F00283B02979A7C70052B8F9 /* Persistance */,
-				F00283BB2979AA210052B8F9 /* CurrentPeriodView.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -111,6 +116,23 @@
 			);
 			path = Persistance;
 			sourceTree = "<group>";
+		};
+		F00283BF2979AC920052B8F9 /* CurrentPeriod */ = {
+			isa = PBXGroup;
+			children = (
+				F00283C02979AC920052B8F9 /* CurrentPeriodView.swift */,
+			);
+			path = CurrentPeriod;
+			sourceTree = "<group>";
+		};
+		F00283C82979ACFB0052B8F9 /* EditItem */ = {
+			isa = PBXGroup;
+			children = (
+				F00283C92979AD160052B8F9 /* EditItemView.swift */,
+			);
+			name = EditItem;
+			path = EasyBudget/Source/EditItem;
+			sourceTree = SOURCE_ROOT;
 		};
 		F093F8C429787373004EDCB9 = {
 			isa = PBXGroup;
@@ -299,10 +321,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F00283B22979A7C70052B8F9 /* EasyBudgetApp.swift in Sources */,
-				F00283BC2979AA210052B8F9 /* CurrentPeriodView.swift in Sources */,
+				F00283C12979AC920052B8F9 /* CurrentPeriodView.swift in Sources */,
 				F00283B82979A7C70052B8F9 /* Persistence.swift in Sources */,
 				F093F8DD29787374004EDCB9 /* EasyBudget.xcdatamodeld in Sources */,
 				F00283B52979A7C70052B8F9 /* ContentView.swift in Sources */,
+				F00283CA2979AD160052B8F9 /* EditItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,10 +334,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F00283B32979A7C70052B8F9 /* EasyBudgetApp.swift in Sources */,
-				F00283BD2979AA210052B8F9 /* CurrentPeriodView.swift in Sources */,
+				F00283C22979AC920052B8F9 /* CurrentPeriodView.swift in Sources */,
 				F00283B92979A7C70052B8F9 /* Persistence.swift in Sources */,
 				F093F8E729787374004EDCB9 /* EasyBudgetTests.swift in Sources */,
 				F00283B62979A7C70052B8F9 /* ContentView.swift in Sources */,
+				F00283CB2979AD160052B8F9 /* EditItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,7 +351,8 @@
 				F00283B72979A7C70052B8F9 /* ContentView.swift in Sources */,
 				F00283B42979A7C70052B8F9 /* EasyBudgetApp.swift in Sources */,
 				F00283BA2979A7C70052B8F9 /* Persistence.swift in Sources */,
-				F00283BE2979AA210052B8F9 /* CurrentPeriodView.swift in Sources */,
+				F00283C32979AC920052B8F9 /* CurrentPeriodView.swift in Sources */,
+				F00283CC2979AD160052B8F9 /* EditItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

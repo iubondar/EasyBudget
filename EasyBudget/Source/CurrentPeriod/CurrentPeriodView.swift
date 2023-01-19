@@ -6,9 +6,9 @@ struct CurrentPeriodView: View {
             List {
                 ForEach(items) { item in
                     NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        Text("Item at \(item.date!, formatter: itemFormatter)")
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                        Text(item.date!, formatter: itemFormatter)
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -18,7 +18,9 @@ struct CurrentPeriodView: View {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: addItem) {
+                    NavigationLink {
+                        EditItemView()
+                    } label: {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
@@ -31,14 +33,14 @@ struct CurrentPeriodView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Item.date, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Item>
     
     private func addItem() {
         withAnimation {
             let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            newItem.date = Date()
 
             do {
                 try viewContext.save()
