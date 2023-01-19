@@ -25,7 +25,6 @@ struct CurrentPeriodView: View {
                     }
                 }
             }
-            Text("Select an item")
         }
     }
 

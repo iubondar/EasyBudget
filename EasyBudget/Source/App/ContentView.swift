@@ -3,12 +3,16 @@ import CoreData
 
 struct ContentView: View {
     var body: some View {
-        CurrentPeriodView()
+        NavigationView {
+            CurrentPeriodView()
+                .navigationTitle("Текущий период")
+        }
+        
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        CurrentPeriodView()
     }
 }

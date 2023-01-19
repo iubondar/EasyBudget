@@ -7,28 +7,26 @@ struct EditItemView: View {
     @State var category: Category?
     
     var body: some View {
-        NavigationView {
-            Form {
-                DatePicker("Дата:", selection: $date, in: ...Date(), displayedComponents: .date)
-                
-                NavigationLink {
-                    // TODO: переход на экран выбора категории
-                    Text("Destination")
-                } label: {
-                    Text(category?.name ?? "Выбери категорию")
-                }
-                
-                TextField("Сумма:", text: $amount)
-                    .keyboardType(.numberPad)
-                    .onReceive(Just(amount)) { newValue in
-                        let filtered = newValue.filter { "0123456789".contains($0) }
-                        if filtered != newValue {
-                            self.amount = filtered
-                        }
-                    }
+        Form {
+            DatePicker("Дата:", selection: $date, in: ...Date(), displayedComponents: .date)
+            
+            NavigationLink {
+                // TODO: переход на экран выбора категории
+                Text("Destination")
+            } label: {
+                Text(category?.name ?? "Выбери категорию")
             }
-            .navigationBarTitle("Новая запись")
+            
+            TextField("Сумма:", text: $amount)
+                .keyboardType(.numberPad)
+                .onReceive(Just(amount)) { newValue in
+                    let filtered = newValue.filter { "0123456789".contains($0) }
+                    if filtered != newValue {
+                        self.amount = filtered
+                    }
+                }
         }
+        .navigationTitle("Новая запись")
     }
 }
 
