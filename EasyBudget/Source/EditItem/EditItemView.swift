@@ -8,12 +8,18 @@ struct EditItemView: View {
     
     @State private var err: ErrorInfo?
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     var body: some View {
         Form {
             DatePicker("Дата:", selection: $date, in: ...Date(), displayedComponents: .date)
             
             NavigationLink {
-                CategoryListView()
+                CategoryListView(
+                    onCategorySelected: { selectedCategory in
+                        category = selectedCategory
+                    }
+                )
             } label: {
                 Text(category?.name ?? "Выбери категорию")
             }
@@ -77,7 +83,11 @@ struct EditItemView: View {
         } catch {
             let nsError = error as NSError
             err = ErrorInfo(id: 3, title: "Ошибка сохранения", description: nsError.localizedDescription)
+            return
         }
+        
+        // TODO: придумать что-то с навигацией - команда должна идти извне
+        presentationMode.wrappedValue.dismiss()
     }
 }
 

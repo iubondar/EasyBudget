@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct CategoryListView: View {
+    var onCategorySelected: ((_ category: Category) -> ())?
+    
     // MARK: State management
     // TODO: перенести во ViewModel
     @Environment(\.managedObjectContext) private var viewContext
@@ -27,11 +29,19 @@ struct CategoryListView: View {
     // MARK: Отображение
     @State private var err: ErrorInfo?
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     var body: some View {
         List {
             ForEach(categories) { category in
                 // TODO: перенести в функцию, развернуть рекурсивно с разными вью и отступами
-                Text(category.name ?? "").font(.title).padding()
+                Button {
+                    onCategorySelected?(category)
+                    // TODO: придумать что-то с навигацией - команда должна идти извне
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    Text(category.name ?? "").font(.title).padding()
+                }
             }
             .onDelete(perform: deleteCategories)
         }
