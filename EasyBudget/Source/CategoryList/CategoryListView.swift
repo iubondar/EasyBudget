@@ -51,8 +51,7 @@ struct CategoryListView: View {
             }
             ToolbarItem {
                 NavigationLink {
-                    // TODO: Создание категории
-                    Text("Новая категория")
+                    EditCategoryView()
                 } label: {
                     Label("Новая категория", systemImage: "plus")
                 }
