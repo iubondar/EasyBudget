@@ -22,6 +22,12 @@
 		F00283CA2979AD160052B8F9 /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283C92979AD160052B8F9 /* EditItemView.swift */; };
 		F00283CB2979AD160052B8F9 /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283C92979AD160052B8F9 /* EditItemView.swift */; };
 		F00283CC2979AD160052B8F9 /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00283C92979AD160052B8F9 /* EditItemView.swift */; };
+		F0378FCB297AF680000E1BE3 /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0378FCA297AF680000E1BE3 /* CategoryListView.swift */; };
+		F0378FCC297AF680000E1BE3 /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0378FCA297AF680000E1BE3 /* CategoryListView.swift */; };
+		F0378FCD297AF680000E1BE3 /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0378FCA297AF680000E1BE3 /* CategoryListView.swift */; };
+		F0378FD0297AF80B000E1BE3 /* ErrorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0378FCF297AF80B000E1BE3 /* ErrorInfo.swift */; };
+		F0378FD1297AF80B000E1BE3 /* ErrorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0378FCF297AF80B000E1BE3 /* ErrorInfo.swift */; };
+		F0378FD2297AF80B000E1BE3 /* ErrorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0378FCF297AF80B000E1BE3 /* ErrorInfo.swift */; };
 		F093F8D529787374004EDCB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F093F8D429787374004EDCB9 /* Assets.xcassets */; };
 		F093F8D829787374004EDCB9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F093F8D729787374004EDCB9 /* Preview Assets.xcassets */; };
 		F093F8DD29787374004EDCB9 /* EasyBudget.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F093F8DB29787374004EDCB9 /* EasyBudget.xcdatamodeld */; };
@@ -53,6 +59,8 @@
 		F00283B12979A7C70052B8F9 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		F00283C02979AC920052B8F9 /* CurrentPeriodView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentPeriodView.swift; sourceTree = "<group>"; };
 		F00283C92979AD160052B8F9 /* EditItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemView.swift; sourceTree = "<group>"; };
+		F0378FCA297AF680000E1BE3 /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
+		F0378FCF297AF80B000E1BE3 /* ErrorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorInfo.swift; sourceTree = "<group>"; };
 		F093F8CD29787373004EDCB9 /* EasyBudget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyBudget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F093F8D429787374004EDCB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F093F8D729787374004EDCB9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -93,9 +101,11 @@
 			isa = PBXGroup;
 			children = (
 				F00283AD2979A7C70052B8F9 /* App */,
+				F0378FC9297AF660000E1BE3 /* CategoryList */,
 				F00283BF2979AC920052B8F9 /* CurrentPeriod */,
 				F00283C82979ACFB0052B8F9 /* EditItem */,
 				F00283B02979A7C70052B8F9 /* Persistance */,
+				F0378FCE297AF7F3000E1BE3 /* Utilities */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -133,6 +143,22 @@
 			name = EditItem;
 			path = EasyBudget/Source/EditItem;
 			sourceTree = SOURCE_ROOT;
+		};
+		F0378FC9297AF660000E1BE3 /* CategoryList */ = {
+			isa = PBXGroup;
+			children = (
+				F0378FCA297AF680000E1BE3 /* CategoryListView.swift */,
+			);
+			path = CategoryList;
+			sourceTree = "<group>";
+		};
+		F0378FCE297AF7F3000E1BE3 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				F0378FCF297AF80B000E1BE3 /* ErrorInfo.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
 		};
 		F093F8C429787373004EDCB9 = {
 			isa = PBXGroup;
@@ -320,11 +346,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0378FD0297AF80B000E1BE3 /* ErrorInfo.swift in Sources */,
 				F00283B22979A7C70052B8F9 /* EasyBudgetApp.swift in Sources */,
 				F00283C12979AC920052B8F9 /* CurrentPeriodView.swift in Sources */,
 				F00283B82979A7C70052B8F9 /* Persistence.swift in Sources */,
 				F093F8DD29787374004EDCB9 /* EasyBudget.xcdatamodeld in Sources */,
 				F00283B52979A7C70052B8F9 /* ContentView.swift in Sources */,
+				F0378FCB297AF680000E1BE3 /* CategoryListView.swift in Sources */,
 				F00283CA2979AD160052B8F9 /* EditItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,11 +361,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0378FD1297AF80B000E1BE3 /* ErrorInfo.swift in Sources */,
 				F00283B32979A7C70052B8F9 /* EasyBudgetApp.swift in Sources */,
 				F00283C22979AC920052B8F9 /* CurrentPeriodView.swift in Sources */,
 				F00283B92979A7C70052B8F9 /* Persistence.swift in Sources */,
 				F093F8E729787374004EDCB9 /* EasyBudgetTests.swift in Sources */,
 				F00283B62979A7C70052B8F9 /* ContentView.swift in Sources */,
+				F0378FCC297AF680000E1BE3 /* CategoryListView.swift in Sources */,
 				F00283CB2979AD160052B8F9 /* EditItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,8 +380,10 @@
 				F093F8F329787374004EDCB9 /* EasyBudgetUITestsLaunchTests.swift in Sources */,
 				F00283B72979A7C70052B8F9 /* ContentView.swift in Sources */,
 				F00283B42979A7C70052B8F9 /* EasyBudgetApp.swift in Sources */,
+				F0378FD2297AF80B000E1BE3 /* ErrorInfo.swift in Sources */,
 				F00283BA2979A7C70052B8F9 /* Persistence.swift in Sources */,
 				F00283C32979AC920052B8F9 /* CurrentPeriodView.swift in Sources */,
+				F0378FCD297AF680000E1BE3 /* CategoryListView.swift in Sources */,
 				F00283CC2979AD160052B8F9 /* EditItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

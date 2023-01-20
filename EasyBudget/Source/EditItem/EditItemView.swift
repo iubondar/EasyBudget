@@ -1,12 +1,6 @@
 import SwiftUI
 import Combine
 
-fileprivate struct ErrorInfo: Identifiable {
-    var id: Int
-    let title: String
-    let description: String
-}
-
 struct EditItemView: View {
     @State var date = Date()
     @State var amount = ""
@@ -19,8 +13,7 @@ struct EditItemView: View {
             DatePicker("Дата:", selection: $date, in: ...Date(), displayedComponents: .date)
             
             NavigationLink {
-                // TODO: переход на экран выбора категории
-                Text("Destination")
+                CategoryListView()
             } label: {
                 Text(category?.name ?? "Выбери категорию")
             }
@@ -49,7 +42,7 @@ struct EditItemView: View {
         .navigationTitle("Новая запись")
         .alert(
             item: $err,
-            content: { error in // 5
+            content: { error in
                 Alert(
                     title: Text(error.title),
                     message: Text(error.description)
