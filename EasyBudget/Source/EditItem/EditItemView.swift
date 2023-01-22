@@ -2,13 +2,11 @@ import SwiftUI
 import Combine
 
 struct EditItemView: View {
+    var onItemSaved: ((_ view: EditItemView) -> ())?
+    
     @State var date = Date()
     @State var amount = ""
     @State var category: Category?
-    
-    @State private var err: ErrorInfo?
-    
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
         Form {
@@ -85,7 +83,15 @@ struct EditItemView: View {
             return
         }
         
-        // TODO: придумать что-то с навигацией - команда должна идти извне
+        onItemSaved?(self)
+    }
+    
+    // TODO: Придумать что сделать с дублированием
+    @State private var err: ErrorInfo?
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    func dismiss() {
         presentationMode.wrappedValue.dismiss()
     }
 }

@@ -57,7 +57,7 @@ struct CategoryListView: View {
             }
             ToolbarItem {
                 NavigationLink {
-                    EditCategoryView()
+                    EditCategoryView(onCategorySaved: { $0.dismiss() })
                 } label: {
                     Label("Новая категория", systemImage: "plus")
                 }
@@ -75,7 +75,7 @@ struct CategoryListView: View {
         )
     }
     
-    // TODO: Перенести в базовый класс
+    // TODO: Придумать что сделать с дублированием
     @State private var err: ErrorInfo?
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>

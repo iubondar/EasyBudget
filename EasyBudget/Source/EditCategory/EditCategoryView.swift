@@ -1,12 +1,7 @@
 import SwiftUI
 
 struct EditCategoryView: View {
-    // MARK: State management
-    @State var parentCategory: Category?
-    
     // MARK: Отображение
-    @State private var err: ErrorInfo?
-    
     var body: some View {
         Form {
             TextField("Название:", text: $name)
@@ -17,7 +12,7 @@ struct EditCategoryView: View {
                     onCategorySelected: { $0.dismiss() }
                 )
             } label: {
-                Text(category?.name ?? "<Родительская категория>")
+                Text(parentCategory?.name ?? "<Родительская категория>")
             }
                         
             Section {
@@ -33,7 +28,7 @@ struct EditCategoryView: View {
             }
         }
         .navigationTitle("Новая категория")
-        // TODO: перенести в базовый View?
+        // TODO: придумать что сделать с дублированием
         .alert(
             item: $err,
             content: { error in
@@ -48,7 +43,8 @@ struct EditCategoryView: View {
     // MARK: State management
     // TODO: перенести в модель
     @State private var name: String = ""
-    @State var category: Category?
+    @State var parentCategory: Category?
+    var onCategorySaved: ((_ view: EditCategoryView) -> ())?
     
     @Environment(\.managedObjectContext) private var viewContext
     
@@ -62,7 +58,7 @@ struct EditCategoryView: View {
         
         let newCategory = Category(context: viewContext)
         newCategory.name = name
-        newCategory.parent = category
+        newCategory.parent = parentCategory
 
         do {
             try viewContext.save()
@@ -70,6 +66,17 @@ struct EditCategoryView: View {
             let nsError = error as NSError
             err = ErrorInfo(id: 3, title: "Ошибка сохранения", description: nsError.localizedDescription)
         }
+        
+        onCategorySaved?(self)
+    }
+    
+    // TODO: Придумать что сделать с дублированием
+    @State private var err: ErrorInfo?
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    func dismiss() {
+        presentationMode.wrappedValue.dismiss()
     }
 }
 

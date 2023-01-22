@@ -19,7 +19,7 @@ struct CurrentPeriodView: View {
                 }
                 ToolbarItem {
                     NavigationLink {
-                        EditItemView()
+                        EditItemView(onItemSaved: { $0.dismiss() })
                     } label: {
                         Label("Add Item", systemImage: "plus")
                     }
