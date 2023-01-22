@@ -1,9 +1,10 @@
 import SwiftUI
 
 struct CategoryListView: View {
-    var onCategorySelected: ((_ category: Category) -> ())?
-    
     // MARK: State management
+    @Binding var selectedCategory: Category?
+    var onCategorySelected: ((_ view: CategoryListView) -> ())?
+        
     // TODO: перенести во ViewModel
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -27,18 +28,13 @@ struct CategoryListView: View {
     }
     
     // MARK: Отображение
-    @State private var err: ErrorInfo?
-    
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
     var body: some View {
         List {
             ForEach(categories) { category in
                 // TODO: перенести в функцию, развернуть рекурсивно с разными вью и отступами
                 Button {
-                    onCategorySelected?(category)
-                    // TODO: придумать что-то с навигацией - команда должна идти извне
-                    presentationMode.wrappedValue.dismiss()
+                    selectedCategory = category
+                    onCategorySelected?(self)
                 } label: {
                     Text(category.name ?? "").font(.title).padding()
                 }
@@ -78,10 +74,21 @@ struct CategoryListView: View {
             }
         )
     }
+    
+    // TODO: Перенести в базовый класс
+    @State private var err: ErrorInfo?
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    func dismiss() {
+        presentationMode.wrappedValue.dismiss()
+    }
 }
 
 struct CategoryListView_Previews: PreviewProvider {
+    @State static var category: Category?
+    
     static var previews: some View {
-        CategoryListView()
+        CategoryListView(selectedCategory: $category)
     }
 }

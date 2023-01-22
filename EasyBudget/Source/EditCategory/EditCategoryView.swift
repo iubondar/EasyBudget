@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct EditCategoryView: View {
+    // MARK: State management
+    @State var parentCategory: Category?
+    
     // MARK: Отображение
     @State private var err: ErrorInfo?
     
@@ -9,7 +12,10 @@ struct EditCategoryView: View {
             TextField("Название:", text: $name)
 
             NavigationLink {
-                CategoryListView()
+                CategoryListView(
+                    selectedCategory: $parentCategory,
+                    onCategorySelected: { $0.dismiss() }
+                )
             } label: {
                 Text(category?.name ?? "<Родительская категория>")
             }
@@ -68,6 +74,8 @@ struct EditCategoryView: View {
 }
 
 struct EditCategoryView_Previews: PreviewProvider {
+    @State static var category: Category?
+    
     static var previews: some View {
         EditCategoryView()
     }

@@ -16,9 +16,8 @@ struct EditItemView: View {
             
             NavigationLink {
                 CategoryListView(
-                    onCategorySelected: { selectedCategory in
-                        category = selectedCategory
-                    }
+                    selectedCategory: $category,
+                    onCategorySelected: { $0.dismiss() }
                 )
             } label: {
                 Text(category?.name ?? "Выбери категорию")
