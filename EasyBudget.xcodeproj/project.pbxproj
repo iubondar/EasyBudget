@@ -37,6 +37,9 @@
 		F093F8E729787374004EDCB9 /* EasyBudgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F093F8E629787374004EDCB9 /* EasyBudgetTests.swift */; };
 		F093F8F129787374004EDCB9 /* EasyBudgetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F093F8F029787374004EDCB9 /* EasyBudgetUITests.swift */; };
 		F093F8F329787374004EDCB9 /* EasyBudgetUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F093F8F229787374004EDCB9 /* EasyBudgetUITestsLaunchTests.swift */; };
+		F09629BD297EF54900894D0B /* Category+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09629BC297EF54900894D0B /* Category+CoreData.swift */; };
+		F09629BE297EF54900894D0B /* Category+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09629BC297EF54900894D0B /* Category+CoreData.swift */; };
+		F09629BF297EF54900894D0B /* Category+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09629BC297EF54900894D0B /* Category+CoreData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +77,7 @@
 		F093F8EC29787374004EDCB9 /* EasyBudgetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyBudgetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F093F8F029787374004EDCB9 /* EasyBudgetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyBudgetUITests.swift; sourceTree = "<group>"; };
 		F093F8F229787374004EDCB9 /* EasyBudgetUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyBudgetUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F09629BC297EF54900894D0B /* Category+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreData.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				F00283B12979A7C70052B8F9 /* Persistence.swift */,
+				F09629BC297EF54900894D0B /* Category+CoreData.swift */,
 			);
 			path = Persistance;
 			sourceTree = "<group>";
@@ -361,6 +366,7 @@
 			files = (
 				F0378FD0297AF80B000E1BE3 /* ErrorInfo.swift in Sources */,
 				F0378FD5297AFF25000E1BE3 /* EditCategoryView.swift in Sources */,
+				F09629BD297EF54900894D0B /* Category+CoreData.swift in Sources */,
 				F00283B22979A7C70052B8F9 /* EasyBudgetApp.swift in Sources */,
 				F00283C12979AC920052B8F9 /* CurrentPeriodView.swift in Sources */,
 				F00283B82979A7C70052B8F9 /* Persistence.swift in Sources */,
@@ -377,6 +383,7 @@
 			files = (
 				F0378FD1297AF80B000E1BE3 /* ErrorInfo.swift in Sources */,
 				F0378FD6297AFF25000E1BE3 /* EditCategoryView.swift in Sources */,
+				F09629BE297EF54900894D0B /* Category+CoreData.swift in Sources */,
 				F00283B32979A7C70052B8F9 /* EasyBudgetApp.swift in Sources */,
 				F00283C22979AC920052B8F9 /* CurrentPeriodView.swift in Sources */,
 				F00283B92979A7C70052B8F9 /* Persistence.swift in Sources */,
@@ -401,6 +408,7 @@
 				F00283C32979AC920052B8F9 /* CurrentPeriodView.swift in Sources */,
 				F0378FCD297AF680000E1BE3 /* CategoryListView.swift in Sources */,
 				F00283CC2979AD160052B8F9 /* EditItemView.swift in Sources */,
+				F09629BF297EF54900894D0B /* Category+CoreData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,17 +1,30 @@
 import SwiftUI
 
+fileprivate struct CategoryViewData: Identifiable {
+    let category: Category
+    let level: Int
+    
+    var id: ObjectIdentifier {
+        return category.id
+    }
+}
+
 struct CurrentPeriodView: View {
+    // TODO: перенести во ViewModel
+    @Environment(\.managedObjectContext) private var viewContext
+
+    // TODO: добавить фильтрацию по текущему месяцу
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Category.name, ascending: true)],
+        animation: .default)
+    private var categories: FetchedResults<Category>
+    
+    // TODO: Добавить возможность выбрать категорию чтобы показать по ней детализацию
+        
     var body: some View {
         NavigationView {
             List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.date!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.date!, formatter: itemFormatter)
-                    }
-                }
-                .onDelete(perform: deleteItems)
+                makeCategoryListView()
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -26,54 +39,70 @@ struct CurrentPeriodView: View {
                 }
             }
         }
+        .navigationTitle(titleDateFormatter.string(from: Date()).capitalized)
     }
 
-    // TODO: перенести во ViewModel
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.date, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
-    
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.date = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+    private func makeCategoryListView() -> some View {
+        var categoryViewDataList = [CategoryViewData]()
+        for category in categories.filter({ $0.parent == nil }) {
+            categoryViewDataList.append(contentsOf: categoryAndChildrenViewData(from: category, level: 1))
+        }
+        
+        return ForEach(categoryViewDataList) { categoryViewData in
+            NavigationLink {
+                // TODO: открыть это же представление, но по выбранной категории
+            } label: {
+                makeCategoryViewFrom(categoryViewData)
             }
         }
     }
-
-    // TODO: перенести во ViewModel
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+    
+    private func categoryAndChildrenViewData(from category: Category, level: Int) -> [CategoryViewData] {
+        var categoryViewDataList = [CategoryViewData(category: category, level: level)]
+        
+        if let children = category.children as? Set<Category>, children.count > 0 {
+            for child in children.sorted(by: { $0.name ?? "" > $1.name ?? "" }) {
+                categoryViewDataList.append(contentsOf: categoryAndChildrenViewData(from: child, level: level + 1))
             }
+        }
+        
+        return categoryViewDataList
+    }
+    
+    @ViewBuilder private func makeCategoryViewFrom(_ data: CategoryViewData) -> some View {
+        HStack {
+            Text(data.category.name ?? "")
+                .font(fontFor(level: data.level))
+                .foregroundColor(.black)
+                .padding(.leading, CGFloat(12 * (data.level - 1)))
+            
+            Spacer()
+            
+            Text(
+                String(data.category.calculateSum(
+                    month: Calendar.current.component(.month, from: Date.now),
+                    year: Calendar.current.component(.year, from: Date.now)
+                ))
+            )
+                .font(fontFor(level: data.level))
+                .foregroundColor(.black)
+        }
+    }
+    
+    private func fontFor(level: Int) -> Font {
+        switch level {
+        case 1: return Font.title
+        case 2: return Font.title2
+        case 3: return Font.title3
+        default: return Font.body
         }
     }
 }
 
 // TODO: перенести во ViewModel
-private let itemFormatter: DateFormatter = {
+private let titleDateFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
+    formatter.dateFormat = "LLLL YYYY"
     return formatter
 }()
 
