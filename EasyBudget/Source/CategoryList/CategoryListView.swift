@@ -1,5 +1,14 @@
 import SwiftUI
 
+fileprivate struct CategoryViewData: Identifiable {
+    let category: Category
+    let level: Int
+    
+    var id: ObjectIdentifier {
+        return category.id
+    }
+}
+
 struct CategoryListView: View {
     // MARK: State management
     @Binding var selectedCategory: Category?
@@ -30,16 +39,7 @@ struct CategoryListView: View {
     // MARK: Отображение
     var body: some View {
         List {
-            ForEach(categories) { category in
-                // TODO: перенести в функцию, развернуть рекурсивно с разными вью и отступами
-                Button {
-                    selectedCategory = category
-                    onCategorySelected?(self)
-                } label: {
-                    Text(category.name ?? "").font(.title).padding()
-                }
-            }
-            .onDelete(perform: deleteCategories)
+            makeCategoryListView()
         }
         // Пустое состояние списка категорий
         .overlay {
@@ -73,6 +73,51 @@ struct CategoryListView: View {
                 )
             }
         )
+    }
+    
+    private func makeCategoryListView() -> some View {
+        var categoryViewDataList = [CategoryViewData]()
+        for category in categories.filter({ $0.parent == nil }) {
+            categoryViewDataList.append(contentsOf: categoryAndChildrenViewData(from: category, level: 1))
+        }
+        
+        return ForEach(categoryViewDataList) { categoryViewData in
+            Button {
+                selectedCategory = categoryViewData.category
+                onCategorySelected?(self)
+            } label: {
+                makeCategoryViewFrom(categoryViewData)
+            }
+        }
+        .onDelete(perform: deleteCategories)
+    }
+    
+    private func categoryAndChildrenViewData(from category: Category, level: Int) -> [CategoryViewData] {
+        var categoryViewDataList = [CategoryViewData(category: category, level: level)]
+        
+        if let children = category.children as? Set<Category>, children.count > 0 {
+            for child in children.sorted(by: { $0.name ?? "" > $1.name ?? "" }) {
+                categoryViewDataList.append(contentsOf: categoryAndChildrenViewData(from: child, level: level + 1))
+            }
+        }
+        
+        return categoryViewDataList
+    }
+    
+    private func makeCategoryViewFrom(_ data: CategoryViewData) -> some View {
+        let font: Font
+        
+        switch data.level {
+        case 1: font = Font.title
+        case 2: font = Font.title2
+        case 3: font = Font.title3
+        default: font = Font.body
+        }
+        
+        return Text(data.category.name ?? "")
+            .font(font)
+            .foregroundColor(.black)
+            .padding(.leading, CGFloat(12 * (data.level - 1)))
     }
     
     // TODO: Придумать что сделать с дублированием
