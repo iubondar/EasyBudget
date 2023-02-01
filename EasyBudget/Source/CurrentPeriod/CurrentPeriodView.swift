@@ -9,6 +9,7 @@ fileprivate struct CategoryViewData: Identifiable {
     }
 }
 
+// TODO: Сделать детальный экран по категории, а на главном оставить только категории первого уровня
 struct CurrentPeriodView: View {
     // TODO: перенести во ViewModel
     @Environment(\.managedObjectContext) private var viewContext
@@ -18,23 +19,33 @@ struct CurrentPeriodView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Category.name, ascending: true)],
         animation: .default)
     private var categories: FetchedResults<Category>
+
+    @State private var isEditItemShown = false
     
-    // TODO: Добавить возможность выбрать категорию чтобы показать по ней детализацию
-        
     var body: some View {
         NavigationView {
-            List {
-                makeCategoryListView()
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+            ZStack {
+                List {
+                    makeCategoryListView()
                 }
-                ToolbarItem {
-                    NavigationLink {
-                        EditItemView(onItemSaved: { $0.dismiss() })
-                    } label: {
-                        Label("Add Item", systemImage: "plus")
+                
+                NavigationLink("Hidden link to item add view", isActive: $isEditItemShown) {
+                    EditItemView(
+                        onItemSaved: { view in
+                            view.dismiss()
+                        }
+                    )
+                }
+                .hidden()
+                
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        AddButtonBuilder.buildAddButton {
+                            isEditItemShown = true
+                        }
+                        Spacer()
                     }
                 }
             }

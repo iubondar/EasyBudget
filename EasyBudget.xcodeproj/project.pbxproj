@@ -40,6 +40,9 @@
 		F09629BD297EF54900894D0B /* Category+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09629BC297EF54900894D0B /* Category+CoreData.swift */; };
 		F09629BE297EF54900894D0B /* Category+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09629BC297EF54900894D0B /* Category+CoreData.swift */; };
 		F09629BF297EF54900894D0B /* Category+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09629BC297EF54900894D0B /* Category+CoreData.swift */; };
+		F0FA9A65298A93CA00311F62 /* AddButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FA9A64298A93CA00311F62 /* AddButtonBuilder.swift */; };
+		F0FA9A66298A93CA00311F62 /* AddButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FA9A64298A93CA00311F62 /* AddButtonBuilder.swift */; };
+		F0FA9A67298A93CA00311F62 /* AddButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FA9A64298A93CA00311F62 /* AddButtonBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +81,7 @@
 		F093F8F029787374004EDCB9 /* EasyBudgetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyBudgetUITests.swift; sourceTree = "<group>"; };
 		F093F8F229787374004EDCB9 /* EasyBudgetUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyBudgetUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F09629BC297EF54900894D0B /* Category+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreData.swift"; sourceTree = "<group>"; };
+		F0FA9A64298A93CA00311F62 /* AddButtonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,7 @@
 				F00283C82979ACFB0052B8F9 /* EditItem */,
 				F00283B02979A7C70052B8F9 /* Persistance */,
 				F0378FCE297AF7F3000E1BE3 /* Utilities */,
+				F0FA9A63298A93B200311F62 /* View */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -232,6 +237,14 @@
 				F093F8F229787374004EDCB9 /* EasyBudgetUITestsLaunchTests.swift */,
 			);
 			path = EasyBudgetUITests;
+			sourceTree = "<group>";
+		};
+		F0FA9A63298A93B200311F62 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F0FA9A64298A93CA00311F62 /* AddButtonBuilder.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -370,6 +383,7 @@
 				F00283B22979A7C70052B8F9 /* EasyBudgetApp.swift in Sources */,
 				F00283C12979AC920052B8F9 /* CurrentPeriodView.swift in Sources */,
 				F00283B82979A7C70052B8F9 /* Persistence.swift in Sources */,
+				F0FA9A65298A93CA00311F62 /* AddButtonBuilder.swift in Sources */,
 				F093F8DD29787374004EDCB9 /* EasyBudget.xcdatamodeld in Sources */,
 				F00283B52979A7C70052B8F9 /* ContentView.swift in Sources */,
 				F0378FCB297AF680000E1BE3 /* CategoryListView.swift in Sources */,
@@ -387,6 +401,7 @@
 				F00283B32979A7C70052B8F9 /* EasyBudgetApp.swift in Sources */,
 				F00283C22979AC920052B8F9 /* CurrentPeriodView.swift in Sources */,
 				F00283B92979A7C70052B8F9 /* Persistence.swift in Sources */,
+				F0FA9A66298A93CA00311F62 /* AddButtonBuilder.swift in Sources */,
 				F093F8E729787374004EDCB9 /* EasyBudgetTests.swift in Sources */,
 				F00283B62979A7C70052B8F9 /* ContentView.swift in Sources */,
 				F0378FCC297AF680000E1BE3 /* CategoryListView.swift in Sources */,
@@ -401,6 +416,7 @@
 				F093F8F129787374004EDCB9 /* EasyBudgetUITests.swift in Sources */,
 				F093F8F329787374004EDCB9 /* EasyBudgetUITestsLaunchTests.swift in Sources */,
 				F00283B72979A7C70052B8F9 /* ContentView.swift in Sources */,
+				F0FA9A67298A93CA00311F62 /* AddButtonBuilder.swift in Sources */,
 				F00283B42979A7C70052B8F9 /* EasyBudgetApp.swift in Sources */,
 				F0378FD2297AF80B000E1BE3 /* ErrorInfo.swift in Sources */,
 				F00283BA2979A7C70052B8F9 /* Persistence.swift in Sources */,
