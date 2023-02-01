@@ -29,11 +29,7 @@ struct CurrentPeriodView: View {
             }
             
             NavigationLink("Hidden link to item add view", isActive: $isEditItemShown) {
-                EditItemView(
-                    onItemSaved: { view in
-                        view.dismiss()
-                    }
-                )
+                EditItemView(onItemSaved: { $0.dismiss() })
             }
             .hidden()
             
@@ -41,13 +37,12 @@ struct CurrentPeriodView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    AddButtonBuilder.buildAddButton {
-                        isEditItemShown = true
-                    }
+                    AddButtonBuilder.buildAddButton { isEditItemShown = true }
                     Spacer()
                 }
             }
         }
+        .navigationTitle(titleDateFormatter.string(from: Date()).capitalized)
     }
 
     private func makeCategoryListView() -> some View {
@@ -106,6 +101,13 @@ struct CurrentPeriodView: View {
         }
     }
 }
+
+// TODO: перенести во ViewModel
+private let titleDateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "LLLL YYYY"
+    return formatter
+}()
 
 struct CurrentPeriodView_Previews: PreviewProvider {
     static var previews: some View {

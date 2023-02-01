@@ -14,6 +14,8 @@ struct CategoryListView: View {
     @Binding var selectedCategory: Category?
     var onCategorySelected: ((_ view: CategoryListView) -> ())?
         
+    @State private var isEditCategoryShown = false
+    
     // TODO: перенести во ViewModel
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -38,8 +40,28 @@ struct CategoryListView: View {
     
     // MARK: Отображение
     var body: some View {
-        List {
-            makeCategoryListView()
+        ZStack {
+            List {
+                makeCategoryListView()
+            }
+            
+            NavigationLink("Hidden link to add category view", isActive: $isEditCategoryShown) {
+                EditCategoryView(
+                    onCategorySaved: {
+                        $0.dismiss()
+                    }
+                )
+            }
+            .hidden()
+            
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    AddButtonBuilder.buildAddButton { isEditCategoryShown = true }
+                    Spacer()
+                }
+            }
         }
         // Пустое состояние списка категорий
         .overlay {
@@ -55,22 +77,12 @@ struct CategoryListView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 EditButton()
             }
-            ToolbarItem {
-                NavigationLink {
-                    EditCategoryView(onCategorySaved: { $0.dismiss() })
-                } label: {
-                    Label("Новая категория", systemImage: "plus")
-                }
-            }
         }
         .navigationTitle("Категории")
         .alert(
             item: $err,
             content: { error in
-                Alert(
-                    title: Text(error.title),
-                    message: Text(error.description)
-                )
+                Alert(title: Text(error.title), message: Text(error.description))
             }
         )
     }
