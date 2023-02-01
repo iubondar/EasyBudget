@@ -23,34 +23,31 @@ struct CurrentPeriodView: View {
     @State private var isEditItemShown = false
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                List {
-                    makeCategoryListView()
-                }
-                
-                NavigationLink("Hidden link to item add view", isActive: $isEditItemShown) {
-                    EditItemView(
-                        onItemSaved: { view in
-                            view.dismiss()
-                        }
-                    )
-                }
-                .hidden()
-                
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        AddButtonBuilder.buildAddButton {
-                            isEditItemShown = true
-                        }
-                        Spacer()
+        ZStack {
+            List {
+                makeCategoryListView()
+            }
+            
+            NavigationLink("Hidden link to item add view", isActive: $isEditItemShown) {
+                EditItemView(
+                    onItemSaved: { view in
+                        view.dismiss()
                     }
+                )
+            }
+            .hidden()
+            
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    AddButtonBuilder.buildAddButton {
+                        isEditItemShown = true
+                    }
+                    Spacer()
                 }
             }
         }
-        .navigationTitle(titleDateFormatter.string(from: Date()).capitalized)
     }
 
     private func makeCategoryListView() -> some View {
@@ -109,13 +106,6 @@ struct CurrentPeriodView: View {
         }
     }
 }
-
-// TODO: перенести во ViewModel
-private let titleDateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "LLLL YYYY"
-    return formatter
-}()
 
 struct CurrentPeriodView_Previews: PreviewProvider {
     static var previews: some View {
