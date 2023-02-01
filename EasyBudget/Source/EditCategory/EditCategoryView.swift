@@ -8,6 +8,7 @@ struct EditCategoryView: View {
 
             NavigationLink {
                 CategoryListView(
+                    shouldShowAddButton: false,
                     selectedCategory: $parentCategory,
                     onCategorySelected: { $0.dismiss() }
                 )

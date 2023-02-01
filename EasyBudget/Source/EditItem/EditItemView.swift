@@ -14,6 +14,7 @@ struct EditItemView: View {
             
             NavigationLink {
                 CategoryListView(
+                    shouldShowAddButton: true,
                     selectedCategory: $category,
                     onCategorySelected: { $0.dismiss() }
                 )

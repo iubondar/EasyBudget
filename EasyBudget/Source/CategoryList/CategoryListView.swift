@@ -11,6 +11,7 @@ fileprivate struct CategoryViewData: Identifiable {
 
 struct CategoryListView: View {
     // MARK: State management
+    let shouldShowAddButton: Bool
     @Binding var selectedCategory: Category?
     var onCategorySelected: ((_ view: CategoryListView) -> ())?
         
@@ -45,21 +46,23 @@ struct CategoryListView: View {
                 makeCategoryListView()
             }
             
-            NavigationLink("Hidden link to add category view", isActive: $isEditCategoryShown) {
-                EditCategoryView(
-                    onCategorySaved: {
-                        $0.dismiss()
+            if shouldShowAddButton {
+                NavigationLink("Hidden link to add category view", isActive: $isEditCategoryShown) {
+                    EditCategoryView(
+                        onCategorySaved: {
+                            $0.dismiss()
+                        }
+                    )
+                }
+                .hidden()
+                
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        AddButtonBuilder.buildAddButton { isEditCategoryShown = true }
+                        Spacer()
                     }
-                )
-            }
-            .hidden()
-            
-            VStack {
-                Spacer()
-                HStack {
-                    Spacer()
-                    AddButtonBuilder.buildAddButton { isEditCategoryShown = true }
-                    Spacer()
                 }
             }
         }
@@ -146,6 +149,6 @@ struct CategoryListView_Previews: PreviewProvider {
     @State static var category: Category?
     
     static var previews: some View {
-        CategoryListView(selectedCategory: $category)
+        CategoryListView(shouldShowAddButton: true, selectedCategory: $category)
     }
 }
