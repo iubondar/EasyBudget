@@ -2,7 +2,15 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos
 
 ### XCode ###
+xcuserdata
+xcuserdata/
+*.xccheckout
 *.xcuserstate
+*.xcbkptlist
+*.xcscmblueprint
+*.orig
+IDEWorkspaceChecks.plist
+DerivedData/
 
 ### macOS ###
 # General
