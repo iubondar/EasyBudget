@@ -1,14 +1,5 @@
 import SwiftUI
 
-fileprivate struct CategoryViewData: Identifiable {
-    let category: Category
-    let level: Int
-    
-    var id: ObjectIdentifier {
-        return category.id
-    }
-}
-
 // TODO: Сделать детальный экран по категории, а на главном оставить только категории первого уровня
 struct CurrentPeriodView: View {
     // TODO: перенести во ViewModel
@@ -50,13 +41,13 @@ struct CurrentPeriodView: View {
             NavigationLink {
                 // TODO: открыть это же представление, но по выбранной категории
             } label: {
-                makeCategoryViewFrom(categoryViewData)
+                CurrentPeriodCategoryView(data: categoryViewData)
             }
         }
     }
     
-    private func makeCategoryViewDataList() -> [CategoryViewData] {
-        var categoryViewDataList = [CategoryViewData]()
+    private func makeCategoryViewDataList() -> [CurrentPeriodCategoryViewData] {
+        var categoryViewDataList = [CurrentPeriodCategoryViewData]()
         
         if let rootCategory = rootCategory {
             // Детальное представление для корневой категории
@@ -66,15 +57,15 @@ struct CurrentPeriodView: View {
             for category in categories.filter(
                 { $0.parent == nil && $0.calculateSum(month: Date.currentMonth, year: Date.currentYear) > 0 }
             ) {
-                categoryViewDataList.append(CategoryViewData(category: category, level: 1))
+                categoryViewDataList.append(CurrentPeriodCategoryViewData(category: category, level: 1))
             }
         }
         
         return categoryViewDataList
     }
     
-    private func categoryAndChildrenViewData(from category: Category, level: Int) -> [CategoryViewData] {
-        var categoryViewDataList = [CategoryViewData(category: category, level: level)]
+    private func categoryAndChildrenViewData(from category: Category, level: Int) -> [CurrentPeriodCategoryViewData] {
+        var categoryViewDataList = [CurrentPeriodCategoryViewData(category: category, level: level)]
         
         if let children = category.children as? Set<Category>, children.count > 0 {
             for child in children.sorted(by: { $0.name ?? "" > $1.name ?? "" }) {
@@ -83,32 +74,6 @@ struct CurrentPeriodView: View {
         }
         
         return categoryViewDataList
-    }
-    
-    @ViewBuilder private func makeCategoryViewFrom(_ data: CategoryViewData) -> some View {
-        HStack {
-            Text(data.category.name ?? "")
-                .font(fontFor(level: data.level))
-                .foregroundColor(.black)
-                .padding(.leading, CGFloat(12 * (data.level - 1)))
-            
-            Spacer()
-            
-            Text(
-                String(data.category.calculateSum(month: Date.currentMonth, year: Date.currentYear))
-            )
-                .font(fontFor(level: data.level))
-                .foregroundColor(.black)
-        }
-    }
-    
-    private func fontFor(level: Int) -> Font {
-        switch level {
-        case 1: return Font.title
-        case 2: return Font.title2
-        case 3: return Font.title3
-        default: return Font.body
-        }
     }
 }
 
