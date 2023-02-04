@@ -4,13 +4,13 @@ import CoreData
 struct ContentView: View {
     var body: some View {
         NavigationStack {
-            CurrentPeriodView()
+            CurrentPeriodView(rootCategory: nil)
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        CurrentPeriodView()
+        CurrentPeriodView(rootCategory: nil)
     }
 }

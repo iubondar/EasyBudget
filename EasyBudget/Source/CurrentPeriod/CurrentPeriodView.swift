@@ -5,7 +5,7 @@ struct CurrentPeriodView: View {
     // TODO: перенести во ViewModel
     @Environment(\.managedObjectContext) private var viewContext
 
-    let rootCategory: Category? = nil
+    let rootCategory: Category?
     
     // TODO: добавить фильтрацию по текущему месяцу
     @FetchRequest(
@@ -30,7 +30,7 @@ struct CurrentPeriodView: View {
                 }
             }
         }
-        .navigationTitle(titleDateFormatter.string(from: Date()).capitalized)
+        .navigationTitle(viewTitle())
         .navigationDestination(isPresented: $isEditItemShown) {
             EditItemView()
         }
@@ -39,7 +39,7 @@ struct CurrentPeriodView: View {
     private func makeCategoryListView() -> some View {
         ForEach(makeCategoryViewDataList()) { categoryViewData in
             NavigationLink {
-                // TODO: открыть это же представление, но по выбранной категории
+                CurrentPeriodView(rootCategory: categoryViewData.category)
             } label: {
                 CurrentPeriodCategoryView(data: categoryViewData)
             }
@@ -75,6 +75,20 @@ struct CurrentPeriodView: View {
         
         return categoryViewDataList
     }
+    
+    private func viewTitle() -> String {
+        let result: String
+        
+        if let rootCategory = rootCategory {
+            result = (rootCategory.name ?? "")
+                + " "
+                + String(rootCategory.calculateSum(month: Date.currentMonth, year: Date.currentYear))
+        } else {
+            result = titleDateFormatter.string(from: Date()).capitalized
+        }
+        
+        return result
+    }
 }
 
 // TODO: перенести во ViewModel
@@ -86,6 +100,7 @@ private let titleDateFormatter: DateFormatter = {
 
 struct CurrentPeriodView_Previews: PreviewProvider {
     static var previews: some View {
-        CurrentPeriodView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        CurrentPeriodView(rootCategory: nil)
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
