@@ -50,8 +50,12 @@ struct CurrentPeriodView: View {
         var categoryViewDataList = [CurrentPeriodCategoryViewData]()
         
         if let rootCategory = rootCategory {
-            // Детальное представление для корневой категории
-            categoryViewDataList.append(contentsOf: categoryAndChildrenViewData(from: rootCategory, level: 1))
+            // Детальное представление для корневой категории - список её дочерних категорий
+            if let children = rootCategory.children as? Set<Category>, children.count > 0 {
+                for category in children {
+                    categoryViewDataList.append(CurrentPeriodCategoryViewData(category: category, level: 1))
+                }
+            }
         } else {
             // Стартовый экран по всем категориям первого уровня с суммой по записям больше 0
             for category in categories.filter(
