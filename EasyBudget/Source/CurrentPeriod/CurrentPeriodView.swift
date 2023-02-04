@@ -14,6 +14,8 @@ struct CurrentPeriodView: View {
     // TODO: перенести во ViewModel
     @Environment(\.managedObjectContext) private var viewContext
 
+    let rootCategory: Category? = nil
+    
     // TODO: добавить фильтрацию по текущему месяцу
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Category.name, ascending: true)],
@@ -44,18 +46,31 @@ struct CurrentPeriodView: View {
     }
 
     private func makeCategoryListView() -> some View {
-        var categoryViewDataList = [CategoryViewData]()
-        for category in categories.filter({ $0.parent == nil }) {
-            categoryViewDataList.append(contentsOf: categoryAndChildrenViewData(from: category, level: 1))
-        }
-        
-        return ForEach(categoryViewDataList) { categoryViewData in
+        ForEach(makeCategoryViewDataList()) { categoryViewData in
             NavigationLink {
                 // TODO: открыть это же представление, но по выбранной категории
             } label: {
                 makeCategoryViewFrom(categoryViewData)
             }
         }
+    }
+    
+    private func makeCategoryViewDataList() -> [CategoryViewData] {
+        var categoryViewDataList = [CategoryViewData]()
+        
+        if let rootCategory = rootCategory {
+            // Детальное представление для корневой категории
+            categoryViewDataList.append(contentsOf: categoryAndChildrenViewData(from: rootCategory, level: 1))
+        } else {
+            // Стартовый экран по всем категориям первого уровня с суммой по записям больше 0
+            for category in categories.filter(
+                { $0.parent == nil && $0.calculateSum(month: Date.currentMonth, year: Date.currentYear) > 0 }
+            ) {
+                categoryViewDataList.append(CategoryViewData(category: category, level: 1))
+            }
+        }
+        
+        return categoryViewDataList
     }
     
     private func categoryAndChildrenViewData(from category: Category, level: Int) -> [CategoryViewData] {
@@ -80,10 +95,7 @@ struct CurrentPeriodView: View {
             Spacer()
             
             Text(
-                String(data.category.calculateSum(
-                    month: Calendar.current.component(.month, from: Date.now),
-                    year: Calendar.current.component(.year, from: Date.now)
-                ))
+                String(data.category.calculateSum(month: Date.currentMonth, year: Date.currentYear))
             )
                 .font(fontFor(level: data.level))
                 .foregroundColor(.black)

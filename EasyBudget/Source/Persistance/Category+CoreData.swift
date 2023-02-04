@@ -1,7 +1,7 @@
 import Foundation
 
 extension Category {
-func calculateSum(month: Int, year: Int) -> Int {
+    func calculateSum(month: Int, year: Int) -> Int {
         guard month >= 1 && month <= 12 else {
             fatalError("Ожидаем месяц в интервале [1...12], получили \(month)")
         }
