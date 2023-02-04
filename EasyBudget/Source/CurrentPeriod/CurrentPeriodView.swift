@@ -14,7 +14,7 @@ struct CurrentPeriodView: View {
     // TODO: перенести во ViewModel
     @Environment(\.managedObjectContext) private var viewContext
 
-    let rootCategory: Category? = nil
+    let rootCategory: Category?
     
     // TODO: добавить фильтрацию по текущему месяцу
     @FetchRequest(
@@ -39,7 +39,7 @@ struct CurrentPeriodView: View {
                 }
             }
         }
-        .navigationTitle(titleDateFormatter.string(from: Date()).capitalized)
+        .navigationTitle(viewTitle())
         .navigationDestination(isPresented: $isEditItemShown) {
             EditItemView()
         }
@@ -47,10 +47,15 @@ struct CurrentPeriodView: View {
 
     private func makeCategoryListView() -> some View {
         ForEach(makeCategoryViewDataList()) { categoryViewData in
-            NavigationLink {
-                // TODO: открыть это же представление, но по выбранной категории
-            } label: {
+            if categoryViewData.category.hasChildren {
+                NavigationLink {
+                    CurrentPeriodView(rootCategory: categoryViewData.category)
+                } label: {
+                    makeCategoryViewFrom(categoryViewData)
+                }
+            } else {
                 makeCategoryViewFrom(categoryViewData)
+                    .padding(.trailing, 18)
             }
         }
     }
@@ -59,8 +64,10 @@ struct CurrentPeriodView: View {
         var categoryViewDataList = [CategoryViewData]()
         
         if let rootCategory = rootCategory {
-            // Детальное представление для корневой категории
-            categoryViewDataList.append(contentsOf: categoryAndChildrenViewData(from: rootCategory, level: 1))
+            // Детальное представление для корневой категории - список её дочерних категорий
+            for child in rootCategory.childrenList {
+                categoryViewDataList.append(CategoryViewData(category: child, level: 1))
+            }
         } else {
             // Стартовый экран по всем категориям первого уровня с суммой по записям больше 0
             for category in categories.filter(
@@ -76,10 +83,8 @@ struct CurrentPeriodView: View {
     private func categoryAndChildrenViewData(from category: Category, level: Int) -> [CategoryViewData] {
         var categoryViewDataList = [CategoryViewData(category: category, level: level)]
         
-        if let children = category.children as? Set<Category>, children.count > 0 {
-            for child in children.sorted(by: { $0.name ?? "" > $1.name ?? "" }) {
-                categoryViewDataList.append(contentsOf: categoryAndChildrenViewData(from: child, level: level + 1))
-            }
+        for child in category.childrenList {
+            categoryViewDataList.append(contentsOf: categoryAndChildrenViewData(from: child, level: level + 1))
         }
         
         return categoryViewDataList
@@ -110,6 +115,20 @@ struct CurrentPeriodView: View {
         default: return Font.body
         }
     }
+    
+    private func viewTitle() -> String {
+        let result: String
+        
+        if let rootCategory = rootCategory {
+            result = (rootCategory.name ?? "")
+                + " "
+                + String(rootCategory.calculateSum(month: Date.currentMonth, year: Date.currentYear))
+        } else {
+            result = titleDateFormatter.string(from: Date()).capitalized
+        }
+        
+        return result
+    }
 }
 
 // TODO: перенести во ViewModel
@@ -121,6 +140,7 @@ private let titleDateFormatter: DateFormatter = {
 
 struct CurrentPeriodView_Previews: PreviewProvider {
     static var previews: some View {
-        CurrentPeriodView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        CurrentPeriodView(rootCategory: nil)
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

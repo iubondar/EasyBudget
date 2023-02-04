@@ -1,6 +1,20 @@
 import Foundation
 
 extension Category {
+    var hasChildren: Bool {
+        return childrenList.count > 0
+    }
+    
+    var childrenList: [Category] {
+        var result = [Category]()
+        
+        if let children = children as? Set<Category>, children.count > 0 {
+            result = children.sorted(by: { $0.name ?? "" > $1.name ?? "" })
+        }
+        
+        return result
+    }
+    
     func calculateSum(month: Int, year: Int) -> Int {
         guard month >= 1 && month <= 12 else {
             fatalError("Ожидаем месяц в интервале [1...12], получили \(month)")
@@ -29,9 +43,7 @@ extension Category {
         }
         
         // Сумма по всем подкатегориям
-        if let children = self.children as? Set<Category>, children.count > 0 {
-            result = children.reduce(result, { $0 + $1.calculateSum(month: month, year: year) })
-        }
+        result = childrenList.reduce(result, { $0 + $1.calculateSum(month: month, year: year) })
         
         return result
     }
