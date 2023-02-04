@@ -1,8 +1,10 @@
 import SwiftUI
 
-struct AddButtonBuilder {
-    static func buildAddButton(action: @escaping () -> ()) -> some View {
-        return Button(
+struct AddButton: View {
+    let action: () -> Void
+    
+    var body: some View {
+        Button(
             action: { action() },
             label: {
                 Text("+")

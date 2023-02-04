@@ -32,7 +32,7 @@ struct CurrentPeriodView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    AddButtonBuilder.buildAddButton { isEditItemShown = true }
+                    AddButton { isEditItemShown = true }
                     Spacer()
                 }
             }

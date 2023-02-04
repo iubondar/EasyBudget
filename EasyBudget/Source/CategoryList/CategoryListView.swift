@@ -61,7 +61,7 @@ struct CategoryListView: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        AddButtonBuilder.buildAddButton { isEditCategoryShown = true }
+                        AddButton { isEditCategoryShown = true }
                         Spacer()
                     }
                 }
