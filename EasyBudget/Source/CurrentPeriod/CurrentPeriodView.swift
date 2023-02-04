@@ -38,10 +38,15 @@ struct CurrentPeriodView: View {
 
     private func makeCategoryListView() -> some View {
         ForEach(makeCategoryViewDataList()) { categoryViewData in
-            NavigationLink {
-                CurrentPeriodView(rootCategory: categoryViewData.category)
-            } label: {
+            if categoryViewData.category.hasChildren {
+                NavigationLink {
+                    CurrentPeriodView(rootCategory: categoryViewData.category)
+                } label: {
+                    CurrentPeriodCategoryView(data: categoryViewData)
+                }
+            } else {
                 CurrentPeriodCategoryView(data: categoryViewData)
+                    .padding(.trailing, 18)
             }
         }
     }
@@ -51,10 +56,8 @@ struct CurrentPeriodView: View {
         
         if let rootCategory = rootCategory {
             // Детальное представление для корневой категории - список её дочерних категорий
-            if let children = rootCategory.children as? Set<Category>, children.count > 0 {
-                for category in children {
-                    categoryViewDataList.append(CurrentPeriodCategoryViewData(category: category, level: 1))
-                }
+            for child in rootCategory.childrenList {
+                categoryViewDataList.append(CurrentPeriodCategoryViewData(category: child, level: 1))
             }
         } else {
             // Стартовый экран по всем категориям первого уровня с суммой по записям больше 0
@@ -71,10 +74,8 @@ struct CurrentPeriodView: View {
     private func categoryAndChildrenViewData(from category: Category, level: Int) -> [CurrentPeriodCategoryViewData] {
         var categoryViewDataList = [CurrentPeriodCategoryViewData(category: category, level: level)]
         
-        if let children = category.children as? Set<Category>, children.count > 0 {
-            for child in children.sorted(by: { $0.name ?? "" > $1.name ?? "" }) {
-                categoryViewDataList.append(contentsOf: categoryAndChildrenViewData(from: child, level: level + 1))
-            }
+        for child in category.childrenList {
+            categoryViewDataList.append(contentsOf: categoryAndChildrenViewData(from: child, level: level + 1))
         }
         
         return categoryViewDataList

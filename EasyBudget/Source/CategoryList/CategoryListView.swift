@@ -104,10 +104,8 @@ struct CategoryListView: View {
     private func categoryAndChildrenViewData(from category: Category, level: Int) -> [CategoryViewData] {
         var categoryViewDataList = [CategoryViewData(category: category, level: level)]
         
-        if let children = category.children as? Set<Category>, children.count > 0 {
-            for child in children.sorted(by: { $0.name ?? "" > $1.name ?? "" }) {
-                categoryViewDataList.append(contentsOf: categoryAndChildrenViewData(from: child, level: level + 1))
-            }
+        for child in category.childrenList {
+            categoryViewDataList.append(contentsOf: categoryAndChildrenViewData(from: child, level: level + 1))
         }
         
         return categoryViewDataList
