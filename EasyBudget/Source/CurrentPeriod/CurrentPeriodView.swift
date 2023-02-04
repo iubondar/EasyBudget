@@ -29,7 +29,7 @@ struct CurrentPeriodView: View {
             }
             
             NavigationLink("Hidden link to item add view", isActive: $isEditItemShown) {
-                EditItemView(onItemSaved: { $0.dismiss() })
+                EditItemView()
             }
             .hidden()
             

@@ -1,6 +1,12 @@
 import SwiftUI
 
 struct EditCategoryView: View {
+    // TODO: перенести в модель
+    @State private var name: String = ""
+    @State var parentCategory: Category?
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    
     // MARK: Отображение
     var body: some View {
         Form {
@@ -42,13 +48,6 @@ struct EditCategoryView: View {
     }
     
     // MARK: State management
-    // TODO: перенести в модель
-    @State private var name: String = ""
-    @State var parentCategory: Category?
-    var onCategorySaved: ((_ view: EditCategoryView) -> ())?
-    
-    @Environment(\.managedObjectContext) private var viewContext
-    
     private func validateAndSave() {
         let errorTitle = "Ошибка значения"
 
@@ -63,12 +62,12 @@ struct EditCategoryView: View {
 
         do {
             try viewContext.save()
+            
+            dismiss()
         } catch {
             let nsError = error as NSError
             err = ErrorInfo(id: 3, title: "Ошибка сохранения", description: nsError.localizedDescription)
         }
-        
-        onCategorySaved?(self)
     }
     
     // TODO: Придумать что сделать с дублированием
@@ -76,7 +75,7 @@ struct EditCategoryView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    func dismiss() {
+    private func dismiss() {
         presentationMode.wrappedValue.dismiss()
     }
 }

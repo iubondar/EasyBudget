@@ -48,11 +48,7 @@ struct CategoryListView: View {
             
             if shouldShowAddButton {
                 NavigationLink("Hidden link to add category view", isActive: $isEditCategoryShown) {
-                    EditCategoryView(
-                        onCategorySaved: {
-                            $0.dismiss()
-                        }
-                    )
+                    EditCategoryView()
                 }
                 .hidden()
                 

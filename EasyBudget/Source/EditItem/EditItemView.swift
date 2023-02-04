@@ -2,8 +2,6 @@ import SwiftUI
 import Combine
 
 struct EditItemView: View {
-    var onItemSaved: ((_ view: EditItemView) -> ())?
-    
     @State var date = Date()
     @State var amount = ""
     @State var category: Category?
@@ -78,13 +76,12 @@ struct EditItemView: View {
 
         do {
             try viewContext.save()
+            dismiss()
         } catch {
             let nsError = error as NSError
             err = ErrorInfo(id: 3, title: "Ошибка сохранения", description: nsError.localizedDescription)
             return
         }
-        
-        onItemSaved?(self)
     }
     
     // TODO: Придумать что сделать с дублированием
@@ -92,7 +89,7 @@ struct EditItemView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    func dismiss() {
+    private func dismiss() {
         presentationMode.wrappedValue.dismiss()
     }
 }
