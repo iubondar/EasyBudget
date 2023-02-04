@@ -28,11 +28,6 @@ struct CurrentPeriodView: View {
                 makeCategoryListView()
             }
             
-            NavigationLink("Hidden link to item add view", isActive: $isEditItemShown) {
-                EditItemView()
-            }
-            .hidden()
-            
             VStack {
                 Spacer()
                 HStack {
@@ -43,6 +38,9 @@ struct CurrentPeriodView: View {
             }
         }
         .navigationTitle(titleDateFormatter.string(from: Date()).capitalized)
+        .navigationDestination(isPresented: $isEditItemShown) {
+            EditItemView()
+        }
     }
 
     private func makeCategoryListView() -> some View {

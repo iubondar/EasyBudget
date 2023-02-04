@@ -45,13 +45,18 @@ struct CategoryListView: View {
             List {
                 makeCategoryListView()
             }
+            // Пустое состояние списка категорий
+            .overlay {
+                if categories.isEmpty {
+                    Text("Категорий пока нет:(")
+                        .foregroundStyle(.secondary)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background()
+                        .ignoresSafeArea()
+                }
+            }
             
             if shouldShowAddButton {
-                NavigationLink("Hidden link to add category view", isActive: $isEditCategoryShown) {
-                    EditCategoryView()
-                }
-                .hidden()
-                
                 VStack {
                     Spacer()
                     HStack {
@@ -62,22 +67,15 @@ struct CategoryListView: View {
                 }
             }
         }
-        // Пустое состояние списка категорий
-        .overlay {
-            if categories.isEmpty {
-                Text("Категорий пока нет:(")
-                    .foregroundStyle(.secondary)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background()
-                    .ignoresSafeArea()
-            }
-        }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 EditButton()
             }
         }
         .navigationTitle("Категории")
+        .navigationDestination(isPresented: $isEditCategoryShown, destination: {
+            EditCategoryView()
+        })
         .alert(
             item: $err,
             content: { error in
