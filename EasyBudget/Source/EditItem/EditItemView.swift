@@ -6,10 +6,20 @@ struct EditItemView: View {
     @State private var amount = ""
     @State private var category: Category?
     @State private var comment = ""
+    
+    @State private var calendarId: Int = 0
 
     var body: some View {
         Form {
             DatePicker("Дата:", selection: $date, in: ...Date(), displayedComponents: .date)
+                // Далее идёт грязный хак для того, чтобы пикер закрывался после выбора даты
+                .id(calendarId)
+                .onChange(of: date, perform: { _ in
+                    calendarId += 1
+                })
+                .onTapGesture {
+                    calendarId += 1
+                }
             
             NavigationLink {
                 CategoryListView(
