@@ -97,9 +97,7 @@ struct CurrentPeriodView: View {
         HStack {
             Text(data.category.name ?? "")
             Spacer()
-            Text(
-                String(data.category.calculateSum(month: Date.currentMonth, year: Date.currentYear))
-            )
+            Text(sumString(from: data.category))
         }
     }
     
@@ -107,14 +105,17 @@ struct CurrentPeriodView: View {
         let result: String
         
         if let rootCategory = rootCategory {
-            result = (rootCategory.name ?? "")
-                + " "
-                + String(rootCategory.calculateSum(month: Date.currentMonth, year: Date.currentYear))
+            result = (rootCategory.name ?? "") + " " + sumString(from: rootCategory)
         } else {
             result = titleDateFormatter.string(from: Date()).capitalized
         }
         
         return result
+    }
+    
+    private func sumString(from category: Category) -> String {
+        let number = NSNumber(value: category.calculateSum(month: Date.currentMonth, year: Date.currentYear))
+        return sumFormatter.string(from: number) ?? ""
     }
 }
 
@@ -122,6 +123,13 @@ struct CurrentPeriodView: View {
 private let titleDateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateFormat = "LLLL YYYY"
+    return formatter
+}()
+
+private let sumFormatter: NumberFormatter = {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .decimal
+    formatter.groupingSeparator = " "
     return formatter
 }()
 
