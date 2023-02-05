@@ -48,7 +48,7 @@ struct CurrentPeriodView: View {
 
     private func makeCategoryListView() -> some View {
         ForEach(makeCategoryViewDataList()) { categoryViewData in
-            // Для стартового экрана имеем возможность провалиться внутрь выбранной категории где есть потомки
+            // Для стартового экрана имеем возможность провалиться внутрь корневой категории
             if rootCategory == nil && categoryViewData.category.hasChildren {
                 NavigationLink {
                     CurrentPeriodView(rootCategory: categoryViewData.category)
@@ -91,12 +91,24 @@ struct CurrentPeriodView: View {
     }
     
     @ViewBuilder private func makeCategoryViewFrom(_ data: CategoryViewData) -> some View {
+        if !data.category.hasChildren {
+            // Для листовых категорий можем провалиться в детальный экран с записями
+            NavigationLink {
+                CategoryItemsView(category: data.category, month: Date.currentMonth, year: Date.currentYear)
+            } label: {
+                makeCategoryRowViewFrom(data)
+            }
+        } else {
+            makeCategoryRowViewFrom(data)
+        }
+    }
+    
+    // Строка для категории с отступами слева по уровню вложенности
+    @ViewBuilder private func makeCategoryRowViewFrom(_ data: CategoryViewData) -> some View {
         HStack {
             Text(data.category.name ?? "")
                 .padding(.leading, CGFloat(16 * (data.level - 1)))
-            
             Spacer()
-            
             Text(sumString(from: data.category))
         }
     }

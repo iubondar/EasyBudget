@@ -43,6 +43,9 @@
 		F09629BD297EF54900894D0B /* Category+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09629BC297EF54900894D0B /* Category+CoreData.swift */; };
 		F09629BE297EF54900894D0B /* Category+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09629BC297EF54900894D0B /* Category+CoreData.swift */; };
 		F09629BF297EF54900894D0B /* Category+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09629BC297EF54900894D0B /* Category+CoreData.swift */; };
+		F0B0BC6D298FF5B60042FB12 /* CategoryItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B0BC6C298FF5B60042FB12 /* CategoryItemsView.swift */; };
+		F0B0BC6E298FF5B60042FB12 /* CategoryItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B0BC6C298FF5B60042FB12 /* CategoryItemsView.swift */; };
+		F0B0BC6F298FF5B60042FB12 /* CategoryItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B0BC6C298FF5B60042FB12 /* CategoryItemsView.swift */; };
 		F0FA9A65298A93CA00311F62 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FA9A64298A93CA00311F62 /* AddButton.swift */; };
 		F0FA9A66298A93CA00311F62 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FA9A64298A93CA00311F62 /* AddButton.swift */; };
 		F0FA9A67298A93CA00311F62 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FA9A64298A93CA00311F62 /* AddButton.swift */; };
@@ -85,6 +88,7 @@
 		F093F8F029787374004EDCB9 /* EasyBudgetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyBudgetUITests.swift; sourceTree = "<group>"; };
 		F093F8F229787374004EDCB9 /* EasyBudgetUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyBudgetUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F09629BC297EF54900894D0B /* Category+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreData.swift"; sourceTree = "<group>"; };
+		F0B0BC6C298FF5B60042FB12 /* CategoryItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItemsView.swift; sourceTree = "<group>"; };
 		F0FA9A64298A93CA00311F62 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				F00283AD2979A7C70052B8F9 /* App */,
+				F0B0BC6B298FF59F0042FB12 /* CategoryItems */,
 				F0378FC9297AF660000E1BE3 /* CategoryList */,
 				F00283BF2979AC920052B8F9 /* CurrentPeriod */,
 				F0378FD3297AFF11000E1BE3 /* EditCategory */,
@@ -243,6 +248,15 @@
 			);
 			path = EasyBudgetUITests;
 			sourceTree = "<group>";
+		};
+		F0B0BC6B298FF59F0042FB12 /* CategoryItems */ = {
+			isa = PBXGroup;
+			children = (
+				F0B0BC6C298FF5B60042FB12 /* CategoryItemsView.swift */,
+			);
+			name = CategoryItems;
+			path = EasyBudget/Source/CategoryItems;
+			sourceTree = SOURCE_ROOT;
 		};
 		F0FA9A63298A93B200311F62 /* View */ = {
 			isa = PBXGroup;
@@ -385,6 +399,7 @@
 				F0378FD0297AF80B000E1BE3 /* ErrorInfo.swift in Sources */,
 				F0378FD5297AFF25000E1BE3 /* EditCategoryView.swift in Sources */,
 				F09629BD297EF54900894D0B /* Category+CoreData.swift in Sources */,
+				F0B0BC6D298FF5B60042FB12 /* CategoryItemsView.swift in Sources */,
 				F00283B22979A7C70052B8F9 /* EasyBudgetApp.swift in Sources */,
 				F00283C12979AC920052B8F9 /* CurrentPeriodView.swift in Sources */,
 				F00283B82979A7C70052B8F9 /* Persistence.swift in Sources */,
@@ -404,6 +419,7 @@
 				F0378FD1297AF80B000E1BE3 /* ErrorInfo.swift in Sources */,
 				F0378FD6297AFF25000E1BE3 /* EditCategoryView.swift in Sources */,
 				F09629BE297EF54900894D0B /* Category+CoreData.swift in Sources */,
+				F0B0BC6E298FF5B60042FB12 /* CategoryItemsView.swift in Sources */,
 				F00283B32979A7C70052B8F9 /* EasyBudgetApp.swift in Sources */,
 				F00283C22979AC920052B8F9 /* CurrentPeriodView.swift in Sources */,
 				F00283B92979A7C70052B8F9 /* Persistence.swift in Sources */,
@@ -429,6 +445,7 @@
 				F093691E298E97B800257017 /* Date+Utilities.swift in Sources */,
 				F00283BA2979A7C70052B8F9 /* Persistence.swift in Sources */,
 				F0378FD7297AFF25000E1BE3 /* EditCategoryView.swift in Sources */,
+				F0B0BC6F298FF5B60042FB12 /* CategoryItemsView.swift in Sources */,
 				F00283C32979AC920052B8F9 /* CurrentPeriodView.swift in Sources */,
 				F0378FCD297AF680000E1BE3 /* CategoryListView.swift in Sources */,
 				F00283CC2979AD160052B8F9 /* EditItemView.swift in Sources */,
