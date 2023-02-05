@@ -3,6 +3,8 @@ import SwiftUI
 struct CategoryItemsView: View {
     let category: Category
     
+    @State private var isItemCommentShown = false
+    
     @FetchRequest private var fetchRequest: FetchedResults<Item>
     
     init(category: Category, month: Int, year: Int) {
@@ -34,8 +36,22 @@ struct CategoryItemsView: View {
                     HStack {
                         Text(itemDateFormatter.string(from: item.date ?? Date()))
                             .padding(.leading, 16)
+                        
                         Spacer()
+                        
                         Text(sumFormatter.string(from: item.amount ?? 0) ?? "")
+                        
+                        if let comment = item.comment, !comment.isEmpty {
+                            Button {
+                                isItemCommentShown = true
+                            } label: {
+                                Image(systemName: "info.circle.fill")
+                                    .foregroundColor(.gray)
+                            }
+                            .sheet(isPresented: $isItemCommentShown) {
+                                Text(comment)
+                            }
+                        }
                     }
                 }
             }
