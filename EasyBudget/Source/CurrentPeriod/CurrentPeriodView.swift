@@ -57,7 +57,6 @@ struct CurrentPeriodView: View {
                 }
             } else {
                 makeCategoryViewFrom(categoryViewData)
-                    .padding(.trailing, 18)
             }
         }
     }
