@@ -124,19 +124,9 @@ struct CategoryListView: View {
     }
     
     private func makeCategoryViewFrom(_ data: CategoryViewData) -> some View {
-        let font: Font
-        
-        switch data.level {
-        case 1: font = Font.title
-        case 2: font = Font.title2
-        case 3: font = Font.title3
-        default: font = Font.body
-        }
-        
         return Text(data.category.name ?? "")
-            .font(font)
             .foregroundColor(.black)
-            .padding(.leading, CGFloat(12 * (data.level - 1)))
+            .padding(.leading, CGFloat(16 * (data.level - 1)))
     }
     
     // TODO: Придумать что сделать с дублированием

@@ -39,7 +39,10 @@ struct CurrentPeriodView: View {
                 }
             }
         }
-        .navigationTitle(viewTitle())
+        .navigationBarTitle(
+            Text(viewTitle()),
+            displayMode: .inline
+        )
         .navigationDestination(isPresented: $isEditItemShown) {
             EditItemView()
         }
@@ -93,26 +96,10 @@ struct CurrentPeriodView: View {
     @ViewBuilder private func makeCategoryViewFrom(_ data: CategoryViewData) -> some View {
         HStack {
             Text(data.category.name ?? "")
-                .font(fontFor(level: data.level))
-                .foregroundColor(.black)
-                .padding(.leading, CGFloat(12 * (data.level - 1)))
-            
             Spacer()
-            
             Text(
                 String(data.category.calculateSum(month: Date.currentMonth, year: Date.currentYear))
             )
-                .font(fontFor(level: data.level))
-                .foregroundColor(.black)
-        }
-    }
-    
-    private func fontFor(level: Int) -> Font {
-        switch level {
-        case 1: return Font.title
-        case 2: return Font.title2
-        case 3: return Font.title3
-        default: return Font.body
         }
     }
     
