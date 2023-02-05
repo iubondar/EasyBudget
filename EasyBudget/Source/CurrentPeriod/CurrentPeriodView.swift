@@ -48,7 +48,8 @@ struct CurrentPeriodView: View {
 
     private func makeCategoryListView() -> some View {
         ForEach(makeCategoryViewDataList()) { categoryViewData in
-            if categoryViewData.category.hasChildren {
+            // Для стартового экрана имеем возможность провалиться внутрь выбранной категории где есть потомки
+            if rootCategory == nil && categoryViewData.category.hasChildren {
                 NavigationLink {
                     CurrentPeriodView(rootCategory: categoryViewData.category)
                 } label: {
@@ -65,10 +66,8 @@ struct CurrentPeriodView: View {
         var categoryViewDataList = [CategoryViewData]()
         
         if let rootCategory = rootCategory {
-            // Детальное представление для корневой категории - список её дочерних категорий
-            for child in rootCategory.childrenList {
-                categoryViewDataList.append(CategoryViewData(category: child, level: 1))
-            }
+            // Детальное представление для корневой категории
+            categoryViewDataList.append(contentsOf: categoryAndChildrenViewData(from: rootCategory, level: 1))
         } else {
             // Стартовый экран по всем категориям первого уровня с суммой по записям больше 0
             for category in categories.filter(
@@ -94,17 +93,18 @@ struct CurrentPeriodView: View {
     @ViewBuilder private func makeCategoryViewFrom(_ data: CategoryViewData) -> some View {
         HStack {
             Text(data.category.name ?? "")
+                .padding(.leading, CGFloat(16 * (data.level - 1)))
+            
             Spacer()
+            
             Text(sumString(from: data.category))
         }
     }
     
     private func viewTitle() -> String {
-        let result: String
+        var result = ""
         
-        if let rootCategory = rootCategory {
-            result = (rootCategory.name ?? "") + " " + sumString(from: rootCategory)
-        } else {
+        if rootCategory == nil {
             result = titleDateFormatter.string(from: Date()).capitalized
         }
         
@@ -120,7 +120,7 @@ struct CurrentPeriodView: View {
 // TODO: перенести в презентер
 private let titleDateFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateFormat = "LLLL YYYY"
+    formatter.dateFormat = "LLLL"
     return formatter
 }()
 
