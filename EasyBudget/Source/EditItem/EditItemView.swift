@@ -2,9 +2,10 @@ import SwiftUI
 import Combine
 
 struct EditItemView: View {
-    @State var date = Date()
-    @State var amount = ""
-    @State var category: Category?
+    @State private var date = Date()
+    @State private var amount = ""
+    @State private var category: Category?
+    @State private var comment = ""
 
     var body: some View {
         Form {
@@ -28,6 +29,10 @@ struct EditItemView: View {
                         self.amount = filtered
                     }
                 }
+            
+            Section(header: Text("Комментарий:")) {
+                TextEditor(text: $comment)
+            }
             
             Section {
                 Button {
@@ -73,6 +78,7 @@ struct EditItemView: View {
         newItem.date = date
         newItem.category = category
         newItem.amount = NSDecimalNumber(string: amount)
+        newItem.comment = comment
 
         do {
             try viewContext.save()
