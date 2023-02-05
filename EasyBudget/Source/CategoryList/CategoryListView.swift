@@ -74,7 +74,14 @@ struct CategoryListView: View {
         }
         .navigationTitle("Категории")
         .navigationDestination(isPresented: $isEditCategoryShown, destination: {
-            EditCategoryView()
+            EditCategoryView(
+                onCategorySaved: {category, view in
+                    view.dismiss()
+                    
+                    selectedCategory = category
+                    onCategorySelected?(self)
+                }
+            )
         })
         .alert(
             item: $err,

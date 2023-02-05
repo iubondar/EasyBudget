@@ -5,6 +5,8 @@ struct EditCategoryView: View {
     @State private var name: String = ""
     @State var parentCategory: Category?
     
+    let onCategorySaved: (_ category: Category, _ view: EditCategoryView) -> ()
+    
     @Environment(\.managedObjectContext) private var viewContext
     
     // MARK: Отображение
@@ -63,7 +65,7 @@ struct EditCategoryView: View {
         do {
             try viewContext.save()
             
-            dismiss()
+            onCategorySaved(newCategory, self)
         } catch {
             let nsError = error as NSError
             err = ErrorInfo(id: 3, title: "Ошибка сохранения", description: nsError.localizedDescription)
@@ -75,7 +77,7 @@ struct EditCategoryView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    private func dismiss() {
+    func dismiss() {
         presentationMode.wrappedValue.dismiss()
     }
 }
@@ -84,6 +86,8 @@ struct EditCategoryView_Previews: PreviewProvider {
     @State static var category: Category?
     
     static var previews: some View {
-        EditCategoryView()
+        EditCategoryView(
+            onCategorySaved: {_, _ in }
+        )
     }
 }
