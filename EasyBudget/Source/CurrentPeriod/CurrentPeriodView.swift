@@ -9,14 +9,12 @@ fileprivate struct CategoryViewData: Identifiable {
     }
 }
 
-// TODO: Сделать детальный экран по категории, а на главном оставить только категории первого уровня
 struct CurrentPeriodView: View {
     // TODO: перенести во ViewModel
     @Environment(\.managedObjectContext) private var viewContext
 
     let rootCategory: Category?
     
-    // TODO: добавить фильтрацию по текущему месяцу
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Category.name, ascending: true)],
         animation: .default)
@@ -119,7 +117,7 @@ struct CurrentPeriodView: View {
     }
 }
 
-// TODO: перенести во ViewModel
+// TODO: перенести в презентер
 private let titleDateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateFormat = "LLLL YYYY"
