@@ -98,11 +98,16 @@ struct CategoryListView: View {
         }
         
         return ForEach(categoryViewDataList) { categoryViewData in
-            Button {
-                selectedCategory = categoryViewData.category
-                onCategorySelected?(self)
-            } label: {
+            if categoryViewData.category.hasChildren {
                 makeCategoryViewFrom(categoryViewData)
+            } else {
+                // Можно выбрать только листовую категорию в дереве категорий
+                Button {
+                    selectedCategory = categoryViewData.category
+                    onCategorySelected?(self)
+                } label: {
+                    makeCategoryViewFrom(categoryViewData)
+                }
             }
         }
         .onDelete(perform: deleteCategories)
