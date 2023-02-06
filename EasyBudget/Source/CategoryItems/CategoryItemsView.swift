@@ -12,7 +12,10 @@ struct CategoryItemsView: View {
         
         let interval = Date.monthInterval(month: month, year: year)
         let predicate = NSPredicate(
-            format: "date >= %@ && date <= %@", interval.start as NSDate, interval.end as NSDate
+            format: "category = %@ && date >= %@ && date <= %@",
+            category,
+            interval.start as NSDate,
+            interval.end as NSDate
         )
         
         _fetchRequest = FetchRequest<Item>(
