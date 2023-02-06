@@ -12,6 +12,7 @@ fileprivate struct CategoryViewData: Identifiable {
 struct CategoryListView: View {
     // MARK: State management
     let shouldShowAddButton: Bool
+    let restrictNodeSelection: Bool
     @Binding var selectedCategory: Category?
     var onCategorySelected: ((_ view: CategoryListView) -> ())?
         
@@ -98,7 +99,7 @@ struct CategoryListView: View {
         }
         
         return ForEach(categoryViewDataList) { categoryViewData in
-            if categoryViewData.category.hasChildren {
+            if restrictNodeSelection && categoryViewData.category.hasChildren{
                 makeCategoryViewFrom(categoryViewData)
             } else {
                 // Можно выбрать только листовую категорию в дереве категорий
@@ -143,6 +144,6 @@ struct CategoryListView_Previews: PreviewProvider {
     @State static var category: Category?
     
     static var previews: some View {
-        CategoryListView(shouldShowAddButton: true, selectedCategory: $category)
+        CategoryListView(shouldShowAddButton: true, restrictNodeSelection: false, selectedCategory: $category)
     }
 }
